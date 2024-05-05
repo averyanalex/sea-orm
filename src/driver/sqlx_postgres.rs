@@ -425,7 +425,7 @@ pub(crate) fn from_sqlx_postgres_row_to_proxy_row(row: &sqlx::postgres::PgRow) -
                             row.try_get(c.ordinal()).expect("Failed to get float"),
                         )),
                         #[cfg(feature = "postgres-array")]
-                        "FLOAT4[]" | "REAL[]" => Value::Array(
+                        "FLOAT4[]" | "REAL[]" | "vector" => Value::Array(
                             sea_query::ArrayType::Float,
                             Some(Box::new(
                                 row.try_get::<Vec<f32>, _>(c.ordinal())
